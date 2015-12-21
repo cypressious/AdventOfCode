@@ -2,10 +2,11 @@ package advent
 
 fun main(args: Array<String>) {
     //    foo(25, listOf(20, 15, 10, 5, 5), 0).print()
-    foo(150, input, 0).size.print()
+    val fit = fit(150, input, 0)
+    fit.filter{it.size == fit.map { it.size }.min()}.size.print()
 }
 
-private fun foo(needed: Int, available: List<Int>, searchFrom: Int): List<List<Int>> {
+private fun fit(needed: Int, available: List<Int>, searchFrom: Int): List<List<Int>> {
     if (available.isEmpty()) {
         return emptyList()
     }
@@ -20,7 +21,7 @@ private fun foo(needed: Int, available: List<Int>, searchFrom: Int): List<List<I
     var i = searchFrom
     while (i < available.size) {
         if (available[i] < needed) {
-            possibleMatch.addAll(foo(needed - available[i], available, i + 1).map { listOf(available[i]) + it })
+            possibleMatch.addAll(fit(needed - available[i], available, i + 1).map { listOf(available[i]) + it })
         }
         i++
     }
@@ -47,4 +48,4 @@ private val input = """43
 46
 9
 27
-38""".splitLines().map { it.toInt() }.sortedDescending()
+38""".splitLines().map(String::toInt).sortedDescending()
