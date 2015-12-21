@@ -1041,4 +1041,4 @@ wymbolrlwosnbxqx
 iyaqihnqvewxdtjm
 hdvdbtvfpdrejenu
 gtjscincktlwwkkf
-wtebigbaythklkbd""".split("\n")
+wtebigbaythklkbd""".splitLines()

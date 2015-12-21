@@ -346,4 +346,4 @@ toggle 491,615 through 998,836
 turn off 210,146 through 221,482
 turn off 209,780 through 572,894
 turn on 766,112 through 792,868
-turn on 222,12 through 856,241""".split("\n")
+turn on 222,12 through 856,241""".splitLines()

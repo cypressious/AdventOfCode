@@ -19,7 +19,8 @@ fun main(args: Array<String>) {
 
 fun Any.print() = println(this)
 
-fun <T> List<T>.windowed(size: Int) = dropLast(size - 1).mapIndexed { i, c -> this@windowed.subList(i, i + size) }
+fun <T> List<T>.windowed(size: Int)
+        = dropLast(size - 1).mapIndexed { i, c -> this@windowed.subList(i, i + size) }
 
 private val input = """AlphaCentauri to Snowdin = 66
 AlphaCentauri to Tambi = 28
@@ -48,4 +49,4 @@ Norrath to Tristram = 50
 Norrath to Arbre = 60
 Straylight to Tristram = 27
 Straylight to Arbre = 81
-Tristram to Arbre = 90""".split("\n")
+Tristram to Arbre = 90""".splitLines()

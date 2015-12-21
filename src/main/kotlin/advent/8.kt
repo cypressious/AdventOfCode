@@ -343,4 +343,4 @@ private val input = """"azlgxdbljwygyttzkfwuxv"
 "x\x6fxbljsjdgd\xaau"
 "hjg\\w\"\x78uoqbsdikbjxpip\"w\"jnhzec"
 "gk"
-"\\zrs\\syur"""".split("\n")
+"\\zrs\\syur"""".splitLines()
