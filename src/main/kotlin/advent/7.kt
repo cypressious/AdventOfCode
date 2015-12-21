@@ -41,7 +41,7 @@ private fun resolveInput(input: List<String>, wires: HashMap<String, Part>) = in
     wires.put(rhs, part)
 }
 
-private fun String.parsePart(map: Map<String, Part>) = if (any { Character.isDigit(it) }) {
+private fun String.parsePart(map: Map<String, Part>) = if (any { it.isDigit() }) {
     Constant(toInt())
 } else {
     Variable(this, map)

@@ -4,7 +4,7 @@ fun main(args: Array<String>) {
     val lights = Array(1000) { IntArray(1000) }
 
     input.forEach { command ->
-        val indexDigit = command.indexOfFirst { Character.isDigit(it) }
+        val indexDigit = command.indexOfFirst { it.isDigit() }
         val action = command.substring(0, indexDigit - 1)
         val coordinates = command.substring(indexDigit).split(" through ").map { it.split(",").map { it.toInt() } }
 
