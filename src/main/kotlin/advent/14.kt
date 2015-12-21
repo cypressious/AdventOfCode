@@ -26,7 +26,10 @@ fun main(args: Array<String>) {
             }
         }
 
-        progress.keys.findMaxBy { it.progress }.points++
+        val maxProgress = progress.keys.maxBy { it.progress }!!.progress
+        progress.keys
+                .filter { it.progress == maxProgress }
+                .forEach { it.points++ }
     }
 
     progress.keys.sortedByDescending { it.points }.joinToString(separator = "\n").print()
@@ -49,8 +52,6 @@ private data class Deer(
         var needsToRest: Int = 0,
         var points: Int = 0
 )
-
-fun <T, R : Comparable<R>> Iterable<T>.findMaxBy(fn: (T) -> R) = sortedByDescending { fn(it) }.first()
 
 fun String.splitBy(vararg splits: String): List<String> {
     val result = arrayListOf<String>()
