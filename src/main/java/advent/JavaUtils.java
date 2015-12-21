@@ -3,9 +3,6 @@ package advent;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Kirill on 20.12.2015.
- */
 public class JavaUtils {
 
     public static <E> List<List<E>> generatePerm(List<E> original) {
