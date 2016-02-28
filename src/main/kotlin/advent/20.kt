@@ -2,8 +2,11 @@ package advent
 
 import java.util.stream.IntStream
 
+/**
+ * Good old brute force solution. Run on beefy PC.
+ */
 fun main(args: Array<String>) {
-    sequence(500000) { it + 1 }
+    generateSequence(500000) { it + 1 }
             .map { house ->
                 val sum = computePresents2(house)
 

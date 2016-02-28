@@ -12,7 +12,7 @@ fun main(args: Array<String>) {
         distances.put(ends[1] to ends[0], parts[1].toInt())
     }
 
-    JavaUtils.generatePerm(cities.toArrayList()).map {
+    JavaUtils.generatePerm(cities.toMutableList()).map {
         it.windowed(2).map { distances[it[0] to it[1]]!! }.sum()
     }.max()!!.print()
 }

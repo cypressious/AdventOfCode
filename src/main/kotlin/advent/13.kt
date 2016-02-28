@@ -21,7 +21,7 @@ fun main(args: Array<String>) {
     }
     names.add("Me")
 
-    JavaUtils.generatePerm(names.toArrayList()).map {
+    JavaUtils.generatePerm(names.toMutableList()).map {
         it.pairs().map { relations[it.toPair()]!! + relations[it.reversed().toPair()]!! }.sum()
     }.max()!!.print()
 
