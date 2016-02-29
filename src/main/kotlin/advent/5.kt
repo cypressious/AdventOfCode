@@ -37,9 +37,6 @@ private fun String.hasPairTwice(): Boolean {
     }
 }
 
-
-fun String.windowed(size: Int) = dropLast(size - 1).mapIndexed { i, c -> this@windowed.substring(i, i + size) }
-
 private val forbidden = arrayOf("ab", "cd", "pq", "xy")
 
 private val input = """uxcplgxnkwbdwhrp

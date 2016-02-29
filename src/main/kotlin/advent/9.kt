@@ -17,11 +17,6 @@ fun main(args: Array<String>) {
     }.max()!!.print()
 }
 
-fun Any.print() = println(this)
-
-fun <T> List<T>.windowed(size: Int)
-        = dropLast(size - 1).mapIndexed { i, c -> this@windowed.subList(i, i + size) }
-
 private val input = """AlphaCentauri to Snowdin = 66
 AlphaCentauri to Tambi = 28
 AlphaCentauri to Faerun = 60

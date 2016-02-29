@@ -1,8 +1,9 @@
 package advent
 
 fun main(args: Array<String>) {
-    val rules = rules.map { it.split(" => ").toPair() }.apply { print() }
+    val rules = rules.map { it.split(" => ").toPair() }.print()
     getSteps(input, rules)!!.print()
+    //    calibrate(input, rules).print()
 }
 
 private val cache = hashMapOf<String, Int?>()

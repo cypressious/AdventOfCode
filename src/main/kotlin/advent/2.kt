@@ -22,10 +22,8 @@ fun main(args: Array<String>) {
 
 }
 
-fun List<Int>.area(d1: Int, d2: Int) = this[d1] * this[d2]
-fun List<Int>.perimeter(d1: Int, d2: Int) = this[d1] * 2 + this[d2] * 2
-
-fun String.splitLines() = split("\n")
+private fun List<Int>.area(d1: Int, d2: Int) = this[d1] * this[d2]
+private fun List<Int>.perimeter(d1: Int, d2: Int) = this[d1] * 2 + this[d2] * 2
 
 private val input = listOf(
         "4x23x21",

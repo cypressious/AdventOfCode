@@ -28,8 +28,8 @@ private fun Map<String, Int>.eq(key: String, other: Int) = this[key]?.equals(oth
 private fun Map<String, Int>.gt(key: String, other: Int) = this[key]?.gt(other) ?: true
 private fun Map<String, Int>.lt(key: String, other: Int) = this[key]?.lt(other) ?: true
 
-fun Int.gt(other: Int) = this > other
-fun Int.lt(other: Int) = this < other
+private fun Int.gt(other: Int) = this > other
+private fun Int.lt(other: Int) = this < other
 
 private val input = """Sue 1: goldfish: 9, cars: 0, samoyeds: 9
 Sue 2: perfumes: 5, trees: 8, goldfish: 8

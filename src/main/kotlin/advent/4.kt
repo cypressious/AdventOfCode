@@ -21,6 +21,6 @@ fun main(args: Array<String>) {
     }
 }
 
-infix fun Byte.eq(other: Int) = this.toInt() == other
+private infix fun Byte.eq(other: Int) = this.toInt() == other
 
 private val input = "bgvyzdsv"

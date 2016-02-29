@@ -53,21 +53,6 @@ private data class Deer(
         var points: Int = 0
 )
 
-fun String.splitBy(vararg splits: String): List<String> {
-    val result = arrayListOf<String>()
-    var str = this
-
-    splits.forEach {
-        val tmp = str.split(it)
-        result += tmp[0]
-        str = tmp[1]
-    }
-
-    result += str
-
-    return result
-}
-
 private val input = """Rudolph can fly 22 km/s for 8 seconds, but then must rest for 165 seconds.
 Cupid can fly 8 km/s for 17 seconds, but then must rest for 114 seconds.
 Prancer can fly 18 km/s for 6 seconds, but then must rest for 103 seconds.

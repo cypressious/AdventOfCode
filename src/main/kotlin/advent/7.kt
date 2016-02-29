@@ -93,12 +93,12 @@ private data class RShift(val left: Part, val right: Part) : Part {
     override fun evaluate() = (left.evaluate().check() shr right.evaluate().check()).check()
 }
 
-fun Int.check(): Int {
+private fun Int.check(): Int {
     require(this <= 0xFFFF)
     return this
 }
 
-fun Int.clip() = this and 0xFFFF
+private fun Int.clip() = this and 0xFFFF
 
 private val testInput = """123 -> x
 456 -> y

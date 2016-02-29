@@ -27,9 +27,7 @@ fun main(args: Array<String>) {
 
 }
 
-fun <T> List<T>.toPair() = this[0] to this[1]
-
-fun <T> List<T>.pairs() = (this + subList(0, 1)).windowed(2)
+private fun <T> List<T>.pairs() = (this + subList(0, 1)).windowed(2)
 
 private val input = """Alice would gain 2 happiness units by sitting next to Bob.
 Alice would gain 26 happiness units by sitting next to Carol.
