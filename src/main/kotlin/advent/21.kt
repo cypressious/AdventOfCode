@@ -1,7 +1,8 @@
 package advent
 
 fun main(args: Array<String>) {
-    Entity(100, 0, 0).equipAgainstBoss().print()
+    //    Entity(100, 0, 0).equipAgainstBoss().print()
+    Entity(100, 0, 0).wasteMoneyAgainstBoss().print()
 }
 
 private fun Entity.equipAgainstBoss(): Entity? {
@@ -13,7 +14,22 @@ private fun Entity.equipAgainstBoss(): Entity? {
             .filter { it.canBeEquippedBy(this) }
             .map { it.equip(this).equipAgainstBoss() }
             .filterNotNull()
+            .filter { it.weapon != null }
             .minBy { it.price }
+}
+
+private fun Entity.wasteMoneyAgainstBoss(): Entity? {
+    if (winsAgainst(boss)) {
+        return null
+    }
+
+    return shop.asSequence()
+            .filter { it.canBeEquippedBy(this) }
+            .map { it.equip(this).wasteMoneyAgainstBoss() }
+            .filterNotNull()
+            .filter { it.weapon != null }
+            .plus(this)
+            .maxBy { it.price }
 }
 
 tailrec private fun Entity.winsAgainst(enemy: Entity): Boolean = when {
@@ -31,7 +47,7 @@ private data class Entity(
         val armorPoints: Int,
         val weapon: String? = null,
         val armor: String? = null,
-        val rings: List<String> = emptyList(),
+        val rings: Set<String> = emptySet(),
         val price: Int = 0
 )
 
@@ -49,7 +65,7 @@ private interface Item {
             price = entity.price + price)
 }
 
-private class Weapon(
+private data class Weapon(
         override val name: String,
         override val price: Int,
         override val damagePoints: Int,
@@ -59,7 +75,7 @@ private class Weapon(
     override fun Entity.equipName() = copy(weapon = name)
 }
 
-private class Armor(
+private data class Armor(
         override val name: String,
         override val price: Int,
         override val damagePoints: Int,
@@ -69,7 +85,7 @@ private class Armor(
     override fun Entity.equipName() = copy(armor = name)
 }
 
-private class Ring(
+private data class Ring(
         override val name: String,
         override val price: Int,
         override val damagePoints: Int,
