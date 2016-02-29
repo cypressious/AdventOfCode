@@ -1,36 +1,50 @@
 package advent
 
 fun main(args: Array<String>) {
-    val rules = rules.map { it.split(" => ").toPair() }.print()
-    getSteps(input, rules)!!.print()
     //    calibrate(input, rules).print()
+
+    val max = getSteps(input, rules, Int.MAX_VALUE, true).print()
+    //    getSteps(input, rules, max, false).print()
+
+    checks.print()
 }
 
-private val cache = hashMapOf<String, Int?>()
+private val cache = hashMapOf<String, Int>()
+private var checks = 0
 
-private fun getSteps(output: String, rules: List<Pair<String, String>>): Int? {
-    //    output.print()
+private fun getSteps(output: String, rules: List<Pair<String, String>>, availableSteps: Int, greedy: Boolean): Int {
+    checks++
 
     if (output == "e") {
         return 0
     }
 
-    return output.indices.flatMap { i ->
-        rules.filter { output.substring(i).startsWith(it.second) }
-                .map {
-                    val newOutput = output.substring(0, i) + it.first + output.substring(i + it.second.length)
+    var minSteps = availableSteps
 
-                    if (cache.containsKey(newOutput)) {
-                        println("Found in cache")
-                        cache[newOutput]
-                    } else {
-                        getSteps(newOutput, rules).apply {
-                            println(this)
-                            cache.put(newOutput, this@apply)
-                        }
+    if (minSteps > 0) {
+        rules.forEach { rule ->
+            output.occurrencesOf(rule.second, matchOverlapping = true).forEach { i ->
+                val newOutput = output.substring(0, i) + rule.first + output.substring(i + rule.second.length)
+
+                val steps = cache.getOrPut(newOutput) { getSteps(newOutput, rules, minSteps - 1, greedy) + 1 }
+
+                if (steps < minSteps) {
+                    minSteps = steps
+                    println("Found new local minimum $steps for output $output")
+
+                    if (greedy) {
+                        return minSteps
                     }
                 }
-    }.filterNotNull().min()?.plus(1)
+            }
+        }
+
+    } else {
+        println("Aborting recursion at $output")
+    }
+
+    return minSteps
+
 }
 
 private fun calibrate(input: String, rules: List<Pair<String, String>>): Int {
@@ -54,7 +68,7 @@ private val testRules = """e => H
 e => O
 H => HO
 H => OH
-O => HH""".splitLines()
+O => HH""".splitLines().map { it.split(" => ").toPair() }
 
 private val rules = """Al => ThF
 Al => ThRnFAr
@@ -98,4 +112,4 @@ Ti => BP
 Ti => TiTi
 e => HF
 e => NAl
-e => OMg""".splitLines()
+e => OMg""".splitLines().map { it.split(" => ").toPair() }.sortedByDescending { it.second.length }
