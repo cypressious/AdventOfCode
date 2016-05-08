@@ -1,7 +1,7 @@
 package advent
 
 fun main(args: Array<String>) {
-    //    Entity(100, 0, 0).equipAgainstBoss().print()
+    Entity(100, 0, 0).equipAgainstBoss().print()
     Entity(100, 0, 0).wasteMoneyAgainstBoss().print()
 }
 
